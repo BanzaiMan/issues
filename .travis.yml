@@ -2,3 +2,7 @@ language: elixir
 
 sudo: false
 
+cache:
+  directories:
+    - deps
+
