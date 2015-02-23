@@ -9,7 +9,7 @@ defmodule Issues.CLI do
     table of last _n_ issues in a GitHub project
   """
 
-  def run(argv) do
+  def main(argv) do
     argv
       |> parse_args
       |> process
@@ -45,7 +45,7 @@ defmodule Issues.CLI do
   end
 
   def process({user,project, _count}) do
-    Issues.GitHubIssues.fetch(user, project)
+    Issues.GithubIssues.fetch(user, project)
     |> decode_response
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
