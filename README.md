@@ -1,4 +1,4 @@
 Issues
 ======
 
-** TODO: Add description **
+GitHub issues tracker CLI from Programming Elixir
