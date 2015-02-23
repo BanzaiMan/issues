@@ -7,7 +7,9 @@ defmodule Issues.CLI do
   """
 
   def run(argv) do
-    parse_args(argv)
+    argv
+      |> parse_args
+      |> process
   end
 
   @doc """
@@ -33,12 +35,6 @@ defmodule Issues.CLI do
     @default_count
   end
 
-  def run(argv) do
-    argv
-      |> parse_args
-      |> process
-  end
-
   def process(:help) do
     IO.puts """
     usage: issues <user> <project> [ count | #{@default_count}]
@@ -59,5 +55,11 @@ defmodule Issues.CLI do
     IO.puts "Error fetching from GitHub: #{message}"
     System.halt(2)
   end
+
+  def convert_to_list_of_hashdicts(list) do
+    list
+    |> Enum.map(&Enum.into(&1, HashDict.new))
+  end
+
 
 end
