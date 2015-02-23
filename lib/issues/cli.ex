@@ -46,6 +46,8 @@ defmodule Issues.CLI do
     |> decode_response
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
+    |> Enum.take(_count)
+    |> print_table_for_columns(["number", "created_at", "title"])
   end
 
   def decode_response({:ok, body}) do
